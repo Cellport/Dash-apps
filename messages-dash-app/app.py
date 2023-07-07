@@ -12,7 +12,6 @@ import pandas as pd
 
 import plotly.express as px
 from matplotlib import pyplot as plt
-import seaborn as sns
 
 
 import numpy as np
@@ -29,13 +28,10 @@ from datetime import datetime as dt
 from datetime import date
 from datetime import timedelta
 
-import calendar
-
 import warnings
 warnings.simplefilter("ignore")
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.YETI])
-
 server = app.server
 
 #LAYOUT
@@ -170,7 +166,7 @@ def update_output(contents, filename):
             #BARS
             by_source = df.groupby(by='source')['id'].count().sort_values(ascending=True).reset_index()
             splot = px.bar(by_source, x='id', y='source', text='id')
-            splot.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'}, font=dict(size=18), margin=dict(l=50, r=50, t=50, b=50), bargap=0.1, bargroupgap=0.1)
+            splot.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'}, font=dict(size=18), margin=dict(l=50, r=50, t=50, b=50), bargap=0.2, bargroupgap=0.2)
             splot.update_traces(textfont_size=25, textposition='auto')
             splot.update_xaxes(visible=True, showgrid=False, title='')
             splot.update_yaxes(visible=True, showgrid=False, title='')
@@ -181,7 +177,7 @@ def update_output(contents, filename):
             
             by_category = df.groupby(by='category')['id'].count().sort_values(ascending=True).reset_index().tail()
             catplot = px.bar(by_category, x='id', y='category', text='id')
-            catplot.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'}, font=dict(size=18), margin=dict(l=50, r=50, t=50, b=50))
+            catplot.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'}, font=dict(size=18), margin=dict(l=50, r=50, t=50, b=50), bargap=0.2, bargroupgap=0.2)
             catplot.update_traces(textfont_size=25, textposition='auto')
             catplot.update_xaxes(visible=True, showgrid=False, title='')
             catplot.update_yaxes(visible=True, showgrid=False, title='')
@@ -196,7 +192,7 @@ def update_output(contents, filename):
                         y='stage',
                         x='id',
                         text='id')
-            stageplot.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'}, font=dict(size=18), margin=dict(l=50, r=50, t=50, b=50))
+            stageplot.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)'}, font=dict(size=18), margin=dict(l=50, r=50, t=50, b=50), bargap=0.2, bargroupgap=0.2)
             stageplot.update_traces(textfont_size=25, textposition='auto')
             stageplot.update_xaxes(visible=True, showgrid=False, title='')
             stageplot.update_yaxes(visible=True, showgrid=False, title='')
@@ -226,3 +222,4 @@ def update_output(contents, filename):
 
 if __name__ == '__main__':
     app.run_server(debug=True, host='0.0.0.0')
+    #app.run_server()
