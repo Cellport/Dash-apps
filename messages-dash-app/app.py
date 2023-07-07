@@ -36,6 +36,7 @@ warnings.simplefilter("ignore")
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.YETI])
 
+server = app.server
 
 #LAYOUT
 app.layout = html.Div([
